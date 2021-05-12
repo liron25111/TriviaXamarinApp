@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TriviaXamarinApp.Views.MainPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="LightSkyBlue" >
+                <Image Source="trivia.jpg" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300"/>
+                <Label Text="Welcome to ShorTrivia!" FontSize="30" TextColor="MidnightBlue"  Grid.Row="0"  HorizontalTextAlignment="Center"
+               Margin="40" HorizontalOptions="CenterAndExpand" />
+                <Button Text="Login" TextColor="Black" Margin="20" FontSize="Subtitle" FontAttributes="Bold"  CornerRadius="10" BackgroundColor="MediumPurple" Command="{Binding logInCommand}" />
+                <Button Text="Play As Gust" TextColor="Black" Margin="20"  CornerRadius="10" FontSize="Subtitle" FontAttributes="Bold"  BackgroundColor="MediumPurple"  Command="{Binding BeagustCommand}" />
+                <Button Text="Register" TextColor="Black" Margin="20" CornerRadius="10" BackgroundColor="MediumPurple" FontSize="Subtitle" FontAttributes="Bold"  Command="{Binding RegisterCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
