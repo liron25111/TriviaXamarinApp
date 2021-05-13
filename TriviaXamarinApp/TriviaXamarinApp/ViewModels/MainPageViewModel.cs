@@ -20,21 +20,36 @@ namespace TriviaXamarinApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public event Action<Page> Push;
-
-        public ICommand logInCommand => new Command(LogIn);
-           private  void LogIn()
+        public MainPageViewModel()
+        {
+          
+                RegisterCommand = new Command(Register);
+                LoginCommand = new Command(LogIn);
+                LogoutCommand = new Command(LogOut);
+                BeAgustCommand = new Command(BeAgust);
+            
+        }
+        private void LogIn()
         {
             Push?.Invoke(new TriviaXamarinApp.Views.LoginPage());
         }
-        public ICommand RegisterCommand => new Command(Register);
+        private void LogOut()
+        {
+            ((App)App.Current).CurrentUser = null;
+        }
         private void Register()
         {
             Push?.Invoke(new TriviaXamarinApp.Views.RegisterPage());
         }
-        public ICommand BeagustCommand => new Command(BeAgust);
         private void BeAgust()
         {
             Push?.Invoke(new TriviaXamarinApp.Views.QuestionsPage());
         }
+        public ICommand PlayCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
+        public ICommand BeAgustCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
+      
     }
 }
