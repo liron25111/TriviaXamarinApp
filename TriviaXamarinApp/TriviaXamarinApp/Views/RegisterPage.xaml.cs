@@ -19,5 +19,11 @@ namespace TriviaXamarinApp.Views
             BindingContext = Rgm;
             Rgm.Push += (p) => Navigation.PushAsync(p);
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Page p = new LoginPage();
+            App.Current.MainPage.Navigation.PushAsync(p);
+        }
     }
 }

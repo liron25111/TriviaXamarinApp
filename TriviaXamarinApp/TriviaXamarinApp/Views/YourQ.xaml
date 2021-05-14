@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TriviaXamarinApp.Views.YourQ" NavigationPage.HasNavigationBar="False" 
+             x:Class="TriviaXamarinApp.Views.YourQ" NavigationPage.HasBackButton="False"
                           x:Name="TheMainPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                <Button BackgroundColor="Silver" Text="Continue Play" CornerRadius="20" WidthRequest="125" HorizontalOptions="Center" Margin="15" FontAttributes="Bold" FontSize="Caption" Padding="0" Clicked="Button_Clicked" ></Button>
                 <Label Text="My Questions " TextColor="DeepSkyBlue" FontSize="Large" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                 <Label>
                     <Label.FormattedText>
