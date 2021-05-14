@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TriviaXamarinApp.Services;
 using TriviaXamarinApp.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace TriviaXamarinApp.ViewModels
 {
@@ -39,36 +40,75 @@ namespace TriviaXamarinApp.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public string aText;
-        public string AText
+        private string qText;
+        public string QText
         {
-            get { return this.aText;}
+            get { return this.qText; }
             set
             {
-                if(this.aText!=value)
+                if(this.qText != value)
                 {
-                    this.aText = value;
-                    OnPropertyChanged(nameof(AText));
+                    this.qText = value;
+                    OnPropertyChanged(nameof(QText));
+                }
+            }
+        }
+        private string correctAnswer;
+        public string CorrectAnswer
+        {
+            get { return this.correctAnswer; }
+            set
+            {
+                if (this.correctAnswer != value)
+                {
+                    this.correctAnswer = value;
+                    OnPropertyChanged(nameof(CorrectAnswer));
+                }
+            }
+        }
+        private string[] answers;
+        public string[] Answers
+        {
+            get { return this.answers; }
+            set
+            {
+                if (this.answers != value)
+                {
+                    this.answers = value;
+                    OnPropertyChanged(nameof(Answers));
                 }
             }
         }
   
+        private string nickName;
+        public string NickName
+        {
+            get { return this.nickName; }
+            set
+            {
+                if(this.nickName != value)
+                {
+                    this.nickName = value;
+                    OnPropertyChanged(nameof(NickName));
+                }    
+            }
+        }
         private string message;
         public string Message
         {
             get { return this.message; }
             set
             {
-                if(this.message !=value)
+                if (this.message != value)
                 {
                     this.message = value;
                     OnPropertyChanged(nameof(Message));
-                }    
+                }
             }
         }
-     
+
+
         public AmericanQuestion AQ { get; set; }
-        private bool pressed = false;
         public ObservableCollection<AnswerViewModel> AnswersList { get; set; }
         public bool clicked;
         public bool Clicked
@@ -83,7 +123,7 @@ namespace TriviaXamarinApp.ViewModels
                 }
             }
         }
-        public bool enabeld;
+        private bool enabeld;
         public bool Enabeld
         {
             get { return this.enabeld; }
@@ -96,7 +136,19 @@ namespace TriviaXamarinApp.ViewModels
                 }
             }
         }
-        public static int count = 0;
+        private int count;
+        public int Count
+        {
+            get { return this.count; }
+            set
+            {
+                if (this.count != value)
+                {
+                    this.count = value;
+                    OnPropertyChanged(nameof(Count));
+                }
+            }
+        }
         public ICommand UserCommand { get; set; } 
 
         public QuestionsPageViewModel()
@@ -110,58 +162,49 @@ namespace TriviaXamarinApp.ViewModels
         private async void CreateQuestion()
         {
             TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-            this.AQ = await proxy.GetRandomQuestion();
-            Random r = new Random();
-            string[] arr = new string[4];
-            if(AQ!= null)
-            {
-                arr[r.Next(0, 4)] = AQ.CorrectAnswer;
-                int counter = 0;
-                for (int i = 0; i < 4; i++)
-                {
-                    if(arr[i]==null)
-                    {
-                        arr[i] = AQ.OtherAnswers[counter]; counter++;
-                    }
-                }
-                foreach(string s in arr)
-                {
-                    this.AnswersList.Add(new AnswerViewModel
-                    {
-                        Answer = s,
-                        Color = Color.Black
-                    });
-                    }
-                }
-            AText = AQ.QText;
-            }
-        public ICommand ChekCommand => new Command<AnswerViewModel>(Answer);
 
-        public void Answer(AnswerViewModel s)
-        {
-            if(!pressed)
-            {   
-                if (s.Answer == AQ.CorrectAnswer)
-                {
-                    s.Color = Color.Green;
-                    count++;
-                }
-                else
-                {
-                    s.Color = Color.Red;
-                }
-                pressed = true;
-                if(count!=0&&count%3==0)
-                {
-                    clicked = true;
-                }
+            AmericanQuestion q = await proxy.GetRandomQuestion();
+
+            this.CorrectAnswer = q.CorrectAnswer;
+            this.NickName = q.CreatorNickName;
+            this.QText = q.QText;
+            Answers = new string[4];
+
+            for (int i = 0; i < 3; i++)
+            {
+                Answers[i] = q.OtherAnswers[i];
             }
+            Answers[3] = q.CorrectAnswer;
+
+            Random r = new Random();
+            Answers = Answers.OrderBy(x => r.Next()).ToArray();
+        }
+        public ICommand ChekCommand => new Command<string>(Answer);
+        public event Action<Page> Push;
+
+
+        public void Answer(string s)
+        {
+           
+                if (s == CorrectAnswer)
+                {
+
+                    Count++;
+                }
+               if( count!=0&&Count %3==0)
+                {
+                App a = (App)App.Current;
+                if(a.CurrentUser!= null)
+                {
+                    App.Current.MainPage.Navigation.PushAsync(new TriviaXamarinApp.Views.PostNewQxaml());
+                }
+
+                }
+           
+            CreateQuestion();
         }
         
-       
-
-
-    }
+ }
 
 
 

@@ -13,6 +13,7 @@ namespace TriviaXamarinApp
         public App()
         {
             InitializeComponent();
+            CurrentUser = null;
             MainPage = new NavigationPage(new TriviaXamarinApp.Views.MainPage());
         }
 

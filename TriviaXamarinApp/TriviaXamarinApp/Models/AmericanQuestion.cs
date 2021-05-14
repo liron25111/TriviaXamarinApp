@@ -11,6 +11,9 @@ namespace TriviaXamarinApp.Models
         public string[] OtherAnswers { get; set; }
         public string CreatorNickName { get; set; }
 
-  
+        internal void Clear()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

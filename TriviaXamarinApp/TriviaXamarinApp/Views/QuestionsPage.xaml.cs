@@ -37,12 +37,21 @@ namespace TriviaXamarinApp.Views
 
         private void User_Clicked(object sender, EventArgs e)
         {
-            Page p = new ProfilePage();
-            App.Current.MainPage.Navigation.PushAsync(p);
+            App a = (App)App.Current;
+            if (a.CurrentUser!=null)
+            {
+                App.Current.MainPage.Navigation.PushAsync(new TriviaXamarinApp.Views.ProfilePage());
+            }
+            else
+            {
+                Page p = new LoginPage();
+                App.Current.MainPage.Navigation.PushAsync(p);
+            }
+          
         }
-        private void Edit_Clicked(object sender, EventArgs e)
+        private void Your_Questions(object sender, EventArgs e)
         {
-            Page p = new EditPage();
+            Page p = new YourQ();
             App.Current.MainPage.Navigation.PushAsync(p);
         }
     }

@@ -38,34 +38,42 @@ namespace TriviaXamarinApp.ViewModels
         private async void SubmitQ()
         {
             TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-           
-            try
+           if(WrongAnswers[0]==""||WrongAnswers[1]== ""||WrongAnswers[2]=="" || CorrectAnswer== "")
             {
-                AmericanQuestion newQ = new AmericanQuestion
+                Error =  "Something Went Wrong...";
+            }
+           else
+            {
+                try
                 {
-                    QText = this.QuestionText,
-                    CorrectAnswer = this.CorrectAnswer,
-                    CreatorNickName = ((App)App.Current).CurrentUser.NickName,
-                    OtherAnswers = new string[]
+                    AmericanQuestion newQ = new AmericanQuestion
                     {
+                        QText = this.QuestionText,
+                        CorrectAnswer = this.CorrectAnswer,
+                        CreatorNickName = ((App)App.Current).CurrentUser.NickName,
+                        OtherAnswers = new string[]
+                        {
                         WrongAnswers[0],
                         WrongAnswers[1],
                         WrongAnswers[2]
-                    }
-                };
+                        }
+                    };
+                 
+                        bool b = await proxy.PostNewQuestion(newQ);
+                        if (b)
+                            await App.Current.MainPage.Navigation.PushAsync(new TriviaXamarinApp.Views.YourQ());
+                        else
+                            Error = "Something Went Wrong...";
 
-                bool b = await proxy.PostNewQuestion(newQ);
-                if (b)
-                    Error = " Your Question Added Successfully";
-                else
+
+                }
+                catch (Exception)
+                {
                     Error = "Something Went Wrong...";
-
+                }
             }
-            catch (Exception)
-            {
-                Error = "Something Went Wrong...";
-            }
-        }
+         
+           }
 
 
         private string questionText;

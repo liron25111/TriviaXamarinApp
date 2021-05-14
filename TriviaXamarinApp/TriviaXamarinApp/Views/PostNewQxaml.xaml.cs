@@ -17,10 +17,6 @@ namespace TriviaXamarinApp.Views
             InitializeComponent();
             BindingContext = new PostNewQuestion();
         }
-        private void Submut_Q(object sender, EventArgs e)
-        {
-            Page p = new QuestionsPage();
-            App.Current.MainPage.Navigation.PushAsync(p);
-        }
+       
     }
 }

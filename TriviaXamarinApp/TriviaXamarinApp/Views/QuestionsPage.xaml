@@ -8,34 +8,18 @@
         <ToolbarItem Text="Login" Order="Secondary" Priority="0" Clicked="Login_Clicked"/>
         <ToolbarItem Text="register" Order="Secondary" Priority="0" Clicked="Register_Clicked"/>
         <ToolbarItem Text="User's page" Order="Secondary" Priority="1" Clicked="User_Clicked"/>
-        <ToolbarItem Text="Edit page" Order="Secondary" Priority="1" Clicked="Edit_Clicked"/>
+        <ToolbarItem Text="My Questions" Order="Secondary" Priority="1" Clicked="Your_Questions"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BackgroundColor="LightBlue" HorizontalOptions="Center" VerticalOptions="Center">
-            <Label x:Name="qtext" Text="{Binding Atext}" TextColor="Black" FontSize="Large"></Label>
-            <CollectionView ItemsSource="{Binding AnswerList}" x:Name="collec">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="4"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Button x:Name="Answer" Grid.Column="1" Grid.Row="0" Text="{Binding Answer}" FontSize="20" Padding="0" TextColor="{Binding Color}" Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.ChekCommand}" CommandParameter="{Binding}"></Button>
-                            <Button x:Name="WrongAnswer" Grid.Column="1" Grid.Row="2" Text="{ Binding AnswersList[0]}" FontSize="20" Padding="0" TextColor="{Binding Color}" Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.ChekCommand}" CommandParameter="{Binding}"></Button>
-                            <Button x:Name="WrongAnswer2" Grid.Column="1" Grid.Row="3" Text="{Binding  AnswersList[1]}}" FontSize="20" Padding="0" TextColor="{Binding Color}" Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.ChekCommand}" CommandParameter="{Binding}"></Button>
-                            <Button x:Name="WrongAnswer3" Grid.Column="1" Grid.Row="4" Text="{Binding AnswersList[2]}" FontSize="20" Padding="0" TextColor="{Binding Color}" Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.ChekCommand}" CommandParameter="{Binding}"></Button>
+            <Label x:Name="qtext" Text="{Binding QText}" TextColor="Black" FontSize="Large"></Label>
 
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                
-            </CollectionView>
+            <Label Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Count}" BackgroundColor="SkyBlue" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[3]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
             <Label x:Name="msg" Text="{Binding Message}" HorizontalOptions="Center" TextColor="Red" FontSize="25"></Label>
-            <Button x:Name="AddQ" Text="Add a question" Clicked="Add_Clicked" IsEnabled="{Binding Click}" ></Button>
-            <Button x:Name="Next" Text="Next" Command="{Binding CreateQuestion}" FontSize="20" FontAttributes="None"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
