@@ -41,7 +41,7 @@
                                            IconImageSource="delete.png"      
                                            BackgroundColor="Red"
                                            Invoked="Swipe"
-                                           Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.DeleteCommand}"
+                                           Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.DeleteQuestionCommand}"
                                            CommandParameter="{Binding}"/>
                                         <SwipeItem Text="Edit"
                                            IconImageSource="Edit.png"
