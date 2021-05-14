@@ -29,12 +29,12 @@ namespace TriviaXamarinApp.Views
             //Page p = new YourQ();
             //App.Current.MainPage.Navigation.PushAsync(p);
         }
-        private void SwipeItem_Invoked(object sender, EventArgs e)
+        private void Swipe(object sender, EventArgs e)
         {
 
         }
 
-        private void SwipeItem_Invoked_1(object sender, EventArgs e)
+        private void Swipe1(object sender, EventArgs e)
         {
 
         }

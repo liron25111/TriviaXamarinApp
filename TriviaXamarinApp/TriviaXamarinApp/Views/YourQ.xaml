@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="My Questions " TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Label Text="My Questions " TextColor="DeepSkyBlue" FontSize="Large" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
@@ -40,18 +40,18 @@
                                         <SwipeItem Text="Delete"
                                            IconImageSource="delete.png"      
                                            BackgroundColor="Red"
-                                           Invoked="SwipeItem_Invoked"
+                                           Invoked="Swipe"
                                            Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.DeleteCommand}"
                                            CommandParameter="{Binding}"/>
                                         <SwipeItem Text="Edit"
-                                           IconImageSource="editIcon.png"
-                                           BackgroundColor="Orange"
-                                           Invoked="SwipeItem_Invoked_1"
+                                           IconImageSource="Edit.png"
+                                           BackgroundColor="Pink"
+                                           Invoked="Swipe1"
                                            Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.EditCommand}"
                                            CommandParameter="{Binding}"/>
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
-                                <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black">
+                                <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="DeepSkyBlue">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />

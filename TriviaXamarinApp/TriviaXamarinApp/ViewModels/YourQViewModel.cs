@@ -21,16 +21,8 @@ namespace TriviaXamarinApp.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public ObservableCollection<AmericanQuestion> QuestionList { get; set; }
 
-        public YourQViewModel()
-        {
-            QuestionList = new ObservableCollection<AmericanQuestion>();
-            CreateQuestionCollection();
-            NickName = ((App)App.Current).CurrentUser.NickName;
-            Email = ((App)App.Current).CurrentUser.Email;
-            Password = ((App)App.Current).CurrentUser.Password;
-        }
+   
         private string nickName;
         public string NickName
         {
@@ -90,44 +82,79 @@ namespace TriviaXamarinApp.ViewModels
                 }
             }
         }
-        private string correctAnswer;
-        public string CorrectAnswer
+        private string error;
+
+        public string Error
         {
-            get { return this.correctAnswer; }
+            get => error;
             set
             {
-                if (this.correctAnswer != value)
+                if (value != error)
                 {
-                    this.correctAnswer = value;
-                    OnPropertyChanged(nameof(CorrectAnswer));
+                    error = value;
+                    OnPropertyChanged();//maybe need nameof
                 }
             }
         }
-        private void CreateQuestionCollection()
+
+        public YourQViewModel()
         {
-            App a = (App)App.Current;
-            List<AmericanQuestion> theQuestions = a.CurrentUser.Questions;
-            foreach (AmericanQuestion q in theQuestions)
+            Error = string.Empty;
+            Questions = new ObservableCollection<AmericanQuestion>();
+            GetQuestions();
+            foreach (AmericanQuestion question in ((App)App.Current).CurrentUser.Questions)
             {
-                this.QuestionList.Add(q);
+                Questions.Add(question);
             }
+            Email = ((App)App.Current).CurrentUser.Email;
+            Password = ((App)App.Current).CurrentUser.Password;
+            NickName = ((App)App.Current).CurrentUser.NickName;
 
+            DeleteQuestionCommand = new Command<AmericanQuestion>(Delete);
         }
-        public ICommand DeleteCommand => new Command<AmericanQuestion>(RemoveQuestion);
+        public ObservableCollection<AmericanQuestion> Questions { get; set; }
+        public ICommand DeleteQuestionCommand { get; set; }
 
-        public async void RemoveQuestion(AmericanQuestion americanQ)
+        private async void GetQuestions()
         {
-            TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-            await proxy.DeleteQuestion(americanQ);
+            try
+            {
+                TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
+                ((App)App.Current).CurrentUser = await proxy.LoginAsync(((App)App.Current).CurrentUser.Email, ((App)App.Current).CurrentUser.Password);
+            }
+            catch (Exception)
+            {
+                Error = "Something Went Wrong...";
+            }
         }
-        public ICommand EditCommand => new Command<AmericanQuestion>(EditQuestion);
+        private async void Delete(AmericanQuestion question)
+        {
+
+            try
+            {
+                TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
+                bool b = await proxy.DeleteQuestion(question);
+                if (!b)
+                    Error = "Something Went Wrong...";
+                else
+                {
+                    Questions.Remove(question);
+                    ((App)App.Current).CurrentUser = await proxy.LoginAsync(((App)App.Current).CurrentUser.Email, ((App)App.Current).CurrentUser.Password);
+                }
+            }
+            catch (Exception)
+            {
+                Error = "Something Went Wrong...";
+            }
+        }
+        //public ICommand EditCommand => new Command<AmericanQuestion>(EditQuestion);
 
         public Func<Page, Task> Push { get; set; }
 
-        public async void EditQuestion(AmericanQuestion americanQ)
-        {
-            //TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-            //await proxy.DeleteQuestion(americanQ);
-        }
+        //public async void EditQuestion(AmericanQuestion americanQ)
+        //{
+        //    //TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
+        //    //await proxy.DeleteQuestion(americanQ);
+        //}
     }
 }
