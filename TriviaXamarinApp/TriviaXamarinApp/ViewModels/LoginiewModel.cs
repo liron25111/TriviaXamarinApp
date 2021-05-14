@@ -27,7 +27,6 @@ namespace TriviaXamarinApp.ViewModels
 
         //events
 
-        public event Action<Page> Push;
 
         public string Error// get eror
         {
@@ -79,7 +78,7 @@ namespace TriviaXamarinApp.ViewModels
         public ICommand LoginCommand { get; set; }// login Command
         public ICommand BeAGustCommand { get; set; } // Continue As A gust
         public ICommand RegisterCommand { get; set; } // RegisterCommand
-
+        public event Action<Page> Push;
         public LoginViewModel()
         {
             Error = string.Empty;
@@ -114,7 +113,7 @@ namespace TriviaXamarinApp.ViewModels
                     Push?.Invoke(new TriviaXamarinApp.Views.QuestionsPage());
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Error = "Something went Wrong";
             }

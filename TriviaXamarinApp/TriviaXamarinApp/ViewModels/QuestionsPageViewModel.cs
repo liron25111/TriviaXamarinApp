@@ -13,207 +13,157 @@ using System.Collections.ObjectModel;
 
 namespace TriviaXamarinApp.ViewModels
 {
+    public class AnswerViewModel :INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public string Answer { get; set; }
+        public Color color;
+        public Color Color
+        {
+            get { return this.color; }
+            set
+            {
+                if (this.color != value)
+                    OnPropertyChanged(nameof(Color));
+            }
+        }
+    }
     class QuestionsPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }   
-                    
+        }
+        public string aText;
+        public string AText
+        {
+            get { return this.aText;}
+            set
+            {
+                if(this.aText!=value)
+                {
+                    this.aText = value;
+                    OnPropertyChanged(nameof(AText));
+                }
+            }
+        }
+  
+        private string message;
+        public string Message
+        {
+            get { return this.message; }
+            set
+            {
+                if(this.message !=value)
+                {
+                    this.message = value;
+                    OnPropertyChanged(nameof(Message));
+                }    
+            }
+        }
+     
+        public AmericanQuestion AQ { get; set; }
+        private bool pressed = false;
+        public ObservableCollection<AnswerViewModel> AnswersList { get; set; }
+        public bool clicked;
+        public bool Clicked
+        {
+            get { return this.clicked; }
+            set
+            {
+                if(this.clicked!= value)
+                {
+                    this.clicked = value;
+                    OnPropertyChanged(nameof(Clicked));
+                }
+            }
+        }
+        public bool enabeld;
+        public bool Enabeld
+        {
+            get { return this.enabeld; }
+            set
+            {
+                if (this.enabeld != value)
+                {
+                    this.enabeld = value;
+                    OnPropertyChanged(nameof(Enabeld));
+                }
+            }
+        }
+        public static int count = 0;
+        public ICommand UserCommand { get; set; } 
 
         public QuestionsPageViewModel()
         {
-            this.Score = 0;
-            this.Enabled = true;
-            this.OtherAnswers = new ObservableCollection<string>();
-            GetQ();
-            NextQCommand = new Command(NextQ);
-            AddNewQCommand = new Command(AddQ);
-            IsCorrectCommand = new Command<string>(IsCorrect);
+            Clicked = false;
+            Message = "";
+            AnswersList = new ObservableCollection<AnswerViewModel>();
+            AQ = new AmericanQuestion();
+            CreateQuestion();
         }
-
-        private void IsCorrect(string answer)
-        {
-            if(answer == correctAnswer)
-            {
-                score++;
-                enabled = false;
-            }
-            if(score%3==0)
-            {
-                CanAddQ = true;
-            }    
-        }
-            public bool IsCorrectAnswer(string answer)
-        {
-            return answer == correctAnswer;
-        }
-        private void AddQ()
-        {
-            if(CanAddQ)
-            {
-                Push?.Invoke(new TriviaXamarinApp.Views.PostNewQxaml());
-                CanAddQ = false;
-            }
-        }
-
-        private  void NextQ()
-        {
-             GetQ();
-            Enabled = true;
-        }
-
-        public async void GetQ()
+        private async void CreateQuestion()
         {
             TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-            try
+            this.AQ = await proxy.GetRandomQuestion();
+            Random r = new Random();
+            string[] arr = new string[4];
+            if(AQ!= null)
             {
-                AmericanQuestion q = await proxy.GetRandomQuestion();
-                if (q != null)
+                arr[r.Next(0, 4)] = AQ.CorrectAnswer;
+                int counter = 0;
+                for (int i = 0; i < 4; i++)
                 {
-                    QuestionText = q.QText;
-                    correctAnswer = q.CorrectAnswer;
-                    OtherAnswers.Add(q.OtherAnswers[0]);
-                    OtherAnswers.Add(q.OtherAnswers[1]);
-                    OtherAnswers.Add(q.OtherAnswers[2]);
-                    nickname = q.CreatorNickName;
+                    if(arr[i]==null)
+                    {
+                        arr[i] = AQ.OtherAnswers[counter]; counter++;
+                    }
+                }
+                foreach(string s in arr)
+                {
+                    this.AnswersList.Add(new AnswerViewModel
+                    {
+                        Answer = s,
+                        Color = Color.Black
+                    });
+                    }
+                }
+            AText = AQ.QText;
+            }
+        public ICommand ChekCommand => new Command<AnswerViewModel>(Answer);
+
+        public void Answer(AnswerViewModel s)
+        {
+            if(!pressed)
+            {   
+                if (s.Answer == AQ.CorrectAnswer)
+                {
+                    s.Color = Color.Green;
+                    count++;
                 }
                 else
-                    Error = "Something went Wrong....";
-
-
-            }
-            catch
-            {
-                Error = "Something went Wrong....";
-            }
-        }
-        private bool canAddQ;
-        public bool CanAddQ
-        {
-            get
-            {
-                return this.canAddQ;
-            }
-            set
-            {
-                if(this.canAddQ!=value)
                 {
-                    this.canAddQ = value;
-                    OnPropertyChanged(nameof(CanAddQ));
-              }
-            }
-        }
-
-
-
-        private int score;
-        public int Score
-        {
-            get
-            {
-                return this.score;
-            }
-            set
-            {
-                if(this.score!=value)
+                    s.Color = Color.Red;
+                }
+                pressed = true;
+                if(count!=0&&count%3==0)
                 {
-                    this.score = value;
-                    OnPropertyChanged(nameof(Score));
+                    clicked = true;
                 }
             }
         }
-        private string error;
-
-        public string Error
-        {
-            get => this.error;
-            set
-            {
-                if (value != error)
-                {
-                    error = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private bool enabled;
-        public bool Enabled
-        {
-            get
-            {
-                return this.enabled;
-            }
-            set
-            {
-                if(this.enabled!= value)
-                {
-                    this.enabled = value;
-                    OnPropertyChanged(nameof(Enabled));
-                }
-            }
-        }
-        private string questionText;
-        public string QuestionText
-        {
-            get {
-                return this.questionText;
-            }
-            set
-            {
-                if(this.questionText!=value)
-                {
-                    this.questionText = value;
-                    OnPropertyChanged(nameof(QuestionText));
-                }
-            }
-        }
-        private string nickname;
-
-        public string NickName
-        {
-            get
-            {
-                return this.nickname;
-            }
-            set
-            {
-                if (this.nickname != value)
-                {
-                    this.nickname = value;
-                    OnPropertyChanged(nameof(NickName));
-                }
-            }
-        }
-        private string correctAnswer;
-        public string CorrectAnswer
-        {
-            get
-            {
-                return this.correctAnswer;
-            }
-            set
-            {
-                if (this.correctAnswer != value)
-                {
-                    this.correctAnswer = value;
-                    OnPropertyChanged(nameof(CorrectAnswer));
-                }
-            }
-        }
-        public ObservableCollection<string> OtherAnswers { get; set; }
-
+        
        
 
-        public ICommand NextQCommand { get; set; }
-        public ICommand AddNewQCommand { get; set; }
-        public ICommand IsCorrectCommand { get; set; }
-
-
-        public event Action<Page> Push; 
 
     }
-}
 
+
+
+}
+        

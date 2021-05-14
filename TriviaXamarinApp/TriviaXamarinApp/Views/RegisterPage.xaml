@@ -13,7 +13,7 @@
 
             <Label Text=" enter your Details right  here 👇  " TextColor="Black" FontSize="17" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0" Grid.Row="0"></Label>
             <Entry Placeholder="Enter your Email   : " HorizontalOptions="StartAndExpand" Margin="15" WidthRequest="300"  Grid.Row="1" FontSize="Medium" FontAttributes="Bold" PlaceholderColor="DarkBlue" Text="{Binding Email}"/>
-            <Entry Placeholder="Enter your Password : " HorizontalOptions="StartAndExpand"  Margin="15" WidthRequest="300"  Grid.Row="2" FontSize="Medium" FontAttributes="Bold"  PlaceholderColor="DarkBlue" Text="{Binding Password}"/>
+            <Entry Placeholder="Enter your Password : " IsPassword="True" HorizontalOptions="StartAndExpand"  Margin="15" WidthRequest="300"  Grid.Row="2" FontSize="Medium" FontAttributes="Bold"  PlaceholderColor="DarkBlue" Text="{Binding Password}"/>
             <Entry Placeholder="Enter your NickName : " HorizontalOptions="StartAndExpand"  Margin="15" WidthRequest="300"  Grid.Row="3" FontSize="Medium" FontAttributes="Bold"  PlaceholderColor="DarkBlue" Text="{Binding NickName}"/>
             <Button Text="Press here to complete your Register" Grid.Row="4" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" CornerRadius="20" FontAttributes="Bold" BackgroundColor="DarkBlue" TextColor="White"  BorderColor="Black" BorderWidth="2" Command="{Binding RegisterCommand}"/>
             <Image Source="a.jpg" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="250" Grid.Row="10"/>

@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
                 <Label Text="            enter your Email And your password  here 👇  " TextColor="Black" FontSize="17" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0" Grid.Row="0"></Label>
                 <Entry Placeholder="Enter your Email : " HorizontalOptions="StartAndExpand" Margin="30,15" WidthRequest="300"  Grid.Row="1" FontSize="Medium" FontAttributes="Bold" PlaceholderColor="Magenta" Text="{Binding Email}"/>
-                <Entry Placeholder="Enter your Password : " HorizontalOptions="StartAndExpand"  Margin="30,15" WidthRequest="300"  Grid.Row="2" FontSize="Medium" FontAttributes="Bold"  PlaceholderColor="Magenta" Text="{Binding Password}"/>
+                <Entry Placeholder="Enter your Password : " IsPassword="True" HorizontalOptions="StartAndExpand"  Margin="30,15" WidthRequest="300"  Grid.Row="2" FontSize="Medium" FontAttributes="Bold"  PlaceholderColor="Magenta" Text="{Binding Password}"/>
                 <Button Text="Press here to complete your login" Grid.Row="4" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" CornerRadius="20" FontAttributes="Bold" BackgroundColor="Magenta" TextColor="White"  BorderColor="Black" BorderWidth="2" Command="{Binding LoginCommand}" />
                 <Image Source="a.jpg" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="250" Grid.Row="9"/>
             </Grid>

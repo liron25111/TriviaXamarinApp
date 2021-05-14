@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using TriviaXamarinApp.Services;
 using TriviaXamarinApp.Models;
+using System.Collections.ObjectModel;
 
 namespace TriviaXamarinApp.ViewModels
 {
@@ -20,121 +21,106 @@ namespace TriviaXamarinApp.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         public PostNewQuestion()
-    {
-        this.CorrectAnswer = string.Empty;
-        this.QText = string.Empty;
-        this.WrongAnswers = new string[NUM_WRONG];
-        for (int i = 0; i < this.WrongAnswers.Length; i++)
         {
-            this.WrongAnswers[i] = string.Empty;
+
+            QuestionText = string.Empty;
+            CorrectAnswer = string.Empty;
+            Error = string.Empty;
+            WrongAnswers = new ObservableCollection<string>();
+            WrongAnswers.Add(string.Empty);
+            WrongAnswers.Add(string.Empty);
+            WrongAnswers.Add(string.Empty);
+            SubmitQCommand = new Command(SubmitQ);
         }
 
-        AddtQuestionCommand = new Command(AddQ);
+        private async void SubmitQ()
+        {
+            TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
+           
+            try
+            {
+                AmericanQuestion newQ = new AmericanQuestion
+                {
+                    QText = this.QuestionText,
+                    CorrectAnswer = this.CorrectAnswer,
+                    CreatorNickName = ((App)App.Current).CurrentUser.NickName,
+                    OtherAnswers = new string[]
+                    {
+                        WrongAnswers[0],
+                        WrongAnswers[1],
+                        WrongAnswers[2]
+                    }
+                };
+
+                bool b = await proxy.PostNewQuestion(newQ);
+                if (b)
+                    Error = " Your Question Added Successfully";
+                else
+                    Error = "Something Went Wrong...";
+
+            }
+            catch (Exception)
+            {
+                Error = "Something Went Wrong...";
+            }
+        }
+
+
+        private string questionText;
+
+        public string QuestionText
+        {
+            get => questionText;
+            set
+            {
+                if (value != questionText)
+                {
+                    questionText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string correctAnswer;
+
+        public string CorrectAnswer
+        {
+            get => correctAnswer;
+            set
+            {
+                if (value != correctAnswer)
+                {
+                    correctAnswer = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        public ObservableCollection<string> WrongAnswers { get; set; }
+
+        private string error;
+
+        public string Error
+        {
+            get => error;
+            set
+            {
+                if (value != error)
+                {
+                    error = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        public ICommand SubmitQCommand { get; set; }
+
+
+
+
     }
-
-    private async void AddQ()
-    {
-        TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-        try
-        {
-            AmericanQuestion question = new AmericanQuestion
-            {
-                CorrectAnswer = this.CorrectAnswer,
-                QText = this.QText,
-                CreatorNickName = ((App)App.Current).CurrentUser.NickName,
-                OtherAnswers = new string[NUM_WRONG],
-            };
-            for (int i = 0; i < this.WrongAnswers.Length; i++)
-            {
-                question.OtherAnswers[i] = this.WrongAnswers[i];
-            }
-
-            bool b = await proxy.PostNewQuestion(question);
-            if (b)
-            {
-                Error = " your question was added successfully";
-            }
-            else
-            {
-                Error = "Something Went Wrong... Please try again";
-            }
-
-
-        }
-        catch (Exception)
-        {
-            Error = "Something Went Wrong...";
-        }
-    }
-
-
-
-    private const int NUM_WRONG = 3;
-    private string qText;
-    public string QText
-    {
-        get => this.qText;
-        set
-        {
-            if (value != qText)
-            {
-                qText = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-
-    private string correctAnswer;
-
-    public string CorrectAnswer
-    {
-        get => this.correctAnswer;
-        set
-        {
-            if (value != correctAnswer)
-            {
-                correctAnswer = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-
-    private string[] wrongAnswers;
-
-    public string[] WrongAnswers
-    {
-        get => this.wrongAnswers;
-        set
-        {
-            if (value != wrongAnswers)
-            {
-                wrongAnswers = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-
-    private string error;
-
-    public string Error
-    {
-        get => this.error;
-        set
-        {
-            if (value != error)
-            {
-                error = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    public ICommand AddtQuestionCommand { get; set; }
-    public event Action<Page> Push;
-
-}
 }

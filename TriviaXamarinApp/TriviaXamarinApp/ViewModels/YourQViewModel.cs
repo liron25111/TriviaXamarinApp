@@ -21,53 +21,34 @@ namespace TriviaXamarinApp.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public ObservableCollection<AmericanQuestion> QuestionList { get; set; }
+
         public YourQViewModel()
         {
-            Error = string.Empty;
-            Questions = new ObservableCollection<AmericanQuestion>();
-            foreach (AmericanQuestion question in ((App)App.Current).CurrentUser.Questions)
-            {
-                Questions.Add(question);
-            }
-            DeleteQuestionCommand = new Command<AmericanQuestion>(Delete);
+            QuestionList = new ObservableCollection<AmericanQuestion>();
+            CreateQuestionCollection();
         }
-        private async void Delete(AmericanQuestion question)
+        private void CreateQuestionCollection()
         {
-
-            try
+            App a = (App)App.Current;
+            List<AmericanQuestion> theQuestions = a.CurrentUser.Questions;
+            foreach (AmericanQuestion q in theQuestions)
             {
-                TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-                bool b = await proxy.DeleteQuestion(question);
-                if (!b)
-                    Error = "Something Went Wrong...";
-                else
-                {
-                    Questions.Remove(question);
-                    ((App)App.Current).CurrentUser = await proxy.LoginAsync(((App)App.Current).CurrentUser.Email, ((App)App.Current).CurrentUser.Password);
-                }
-            }
-            catch (Exception)
-            {
-                Error = "Something Went Wrong...";
+                this.QuestionList.Add(q);
             }
         }
-        private string error;
+        public ICommand DeleteCommand => new Command<AmericanQuestion>(RemoveQuestion);
 
-        public string Error
+        public async void RemoveQuestion(AmericanQuestion americanQ)
         {
-            get => error;
-            set
-            {
-                if (value != error)
-                {
-                    error = value;
-                    OnPropertyChanged();//maybe need nameof
-                }
-            }
+            TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
+            await proxy.DeleteQuestion(americanQ);
         }
-        public ObservableCollection<AmericanQuestion> Questions { get; set; }
-        public ICommand DeleteQuestionCommand { get; set; }
-        public event Func<Page, Task> Push;
-
+        public ICommand EditCommand => new Command<AmericanQuestion>(EditQuestion);
+        public async void EditQuestion(AmericanQuestion americanQ)
+        {
+            //TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
+            //await proxy.DeleteQuestion(americanQ);
+        }
     }
 }

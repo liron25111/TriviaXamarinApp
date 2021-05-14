@@ -14,10 +14,17 @@ namespace TriviaXamarinApp.Views
     {
         public YourQ()
         {
-            InitializeComponent();
-            YourQViewModel yqvm = new YourQViewModel();
-            BindingContext = yqvm;
-            yqvm.Push += (p) => Navigation.PushAsync(p);
+          
+        }
+        private void Login_Clicked(object sender, EventArgs e)
+        {
+            Page p = new LoginPage();
+            App.Current.MainPage.Navigation.PushAsync(p);
+        }
+        private void Question_Clicked(object sender, EventArgs e)
+        {
+            Page p = new TheQPage();
+            App.Current.MainPage.Navigation.PushAsync(p);
         }
     }
 }

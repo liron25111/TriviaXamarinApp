@@ -4,9 +4,40 @@
              x:Class="TriviaXamarinApp.Views.YourQ">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="My Questions " TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <CollectionView x:Name=" Collection" ItemsSource="{Binding QuestionList}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                           IconImageSource="delete.png"
+                                           BackgroundColor="Red"
+                                           Command="{Binding Source={x:Reference Collection}, Path=BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}" />
+                                    <SwipeItem Text="Edit"
+                                             IconImageSource=""
+                                               BackgroundColor="Orange"
+                                               Command="{Binding Source={x:Reference Collection}, Path=BindingContext.EditCommand}"
+                                               CommandParameter="{Binding}"
+                                                                         />
+
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Grid Margin="10" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="Question" Text="{Binding Qtext}" Padding="0" Clicked="Question_Clicked"></Button>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

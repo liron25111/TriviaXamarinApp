@@ -111,7 +111,7 @@ namespace TriviaXamarinApp.ViewModels
                     Push?.Invoke(new TriviaXamarinApp.Views.QuestionsPage());
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Error = "Something went Wrong";
             }
