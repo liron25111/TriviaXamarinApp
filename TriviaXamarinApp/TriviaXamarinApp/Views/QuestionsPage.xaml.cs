@@ -40,7 +40,7 @@ namespace TriviaXamarinApp.Views
             App a = (App)App.Current;
             if (a.CurrentUser!=null)
             {
-                App.Current.MainPage.Navigation.PushAsync(new TriviaXamarinApp.Views.ProfilePage());
+                App.Current.MainPage.Navigation.PushAsync(new TriviaXamarinApp.Views.YourQ());
             }
             else
             {

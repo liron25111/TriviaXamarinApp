@@ -27,6 +27,81 @@ namespace TriviaXamarinApp.ViewModels
         {
             QuestionList = new ObservableCollection<AmericanQuestion>();
             CreateQuestionCollection();
+            NickName = ((App)App.Current).CurrentUser.NickName;
+            Email = ((App)App.Current).CurrentUser.Email;
+            Password = ((App)App.Current).CurrentUser.Password;
+        }
+        private string nickName;
+        public string NickName
+        {
+            get { return this.nickName; }
+            set
+            {
+                if (this.nickName != value)
+                {
+                    this.nickName = value;
+                    OnPropertyChanged(nameof(NickName));
+                }
+            }
+        }
+        private string password;
+
+        public string Password // GetPassword
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                if (password != value)
+                {
+                    password = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string email;
+        public string Email // get Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                if (email != value)
+                {
+                    email = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string qText;
+        public string QText
+        {
+            get { return this.qText; }
+            set
+            {
+                if (this.qText != value)
+                {
+                    this.qText = value;
+                    OnPropertyChanged(nameof(QText));
+                }
+            }
+        }
+        private string correctAnswer;
+        public string CorrectAnswer
+        {
+            get { return this.correctAnswer; }
+            set
+            {
+                if (this.correctAnswer != value)
+                {
+                    this.correctAnswer = value;
+                    OnPropertyChanged(nameof(CorrectAnswer));
+                }
+            }
         }
         private void CreateQuestionCollection()
         {
@@ -36,6 +111,7 @@ namespace TriviaXamarinApp.ViewModels
             {
                 this.QuestionList.Add(q);
             }
+
         }
         public ICommand DeleteCommand => new Command<AmericanQuestion>(RemoveQuestion);
 

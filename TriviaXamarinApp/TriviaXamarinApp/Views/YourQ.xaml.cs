@@ -26,8 +26,17 @@ namespace TriviaXamarinApp.Views
         }
         private void Question_Clicked(object sender, EventArgs e)
         {
-            Page p = new TheQPage();
-            App.Current.MainPage.Navigation.PushAsync(p);
+            //Page p = new YourQ();
+            //App.Current.MainPage.Navigation.PushAsync(p);
+        }
+        private void SwipeItem_Invoked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SwipeItem_Invoked_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

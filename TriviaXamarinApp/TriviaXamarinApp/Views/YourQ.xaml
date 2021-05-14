@@ -1,42 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TriviaXamarinApp.Views.YourQ" NavigationPage.HasNavigationBar="False" >
+             x:Class="TriviaXamarinApp.Views.YourQ" NavigationPage.HasNavigationBar="False" 
+                          x:Name="TheMainPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="My Questions " TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <CollectionView x:Name=" Collection" ItemsSource="{Binding QuestionList}" >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <SwipeItem Text="Delete"
-                                           IconImageSource="delete.png"
+        <ScrollView>
+            <StackLayout>
+                <Label Text="My Questions " TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Your NickName Is: " />
+                            <Span Text="{Binding NickName}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Your Email Is:  " />
+                            <Span Text="{Binding Email}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Your Password Is: " />
+                            <Span Text="{Binding Password}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <CollectionView ItemsSource="{Binding Questions}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete"
+                                           IconImageSource="delete.png"      
                                            BackgroundColor="Red"
-                                           Command="{Binding Source={x:Reference Collection}, Path=BindingContext.DeleteCommand}"
-                                           CommandParameter="{Binding}" />
-                                    <SwipeItem Text="Edit"
-                                             IconImageSource=""
-                                               BackgroundColor="Orange"
-                                               Command="{Binding Source={x:Reference Collection}, Path=BindingContext.EditCommand}"
-                                               CommandParameter="{Binding}"
-                                                           />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-                            <Grid Margin="10" HorizontalOptions="FillAndExpand">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="Question" Text="{Binding Qtext}" Padding="0" Clicked="Question_Clicked"></Button>
-                            </Grid>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                                           Invoked="SwipeItem_Invoked"
+                                           Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.DeleteCommand}"
+                                           CommandParameter="{Binding}"/>
+                                        <SwipeItem Text="Edit"
+                                           IconImageSource="editIcon.png"
+                                           BackgroundColor="Orange"
+                                           Invoked="SwipeItem_Invoked_1"
+                                           Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.EditCommand}"
+                                           CommandParameter="{Binding}"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Text="Ouestion:" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="Micro"/>
+                                    <Label Grid.Row="1" Text="{Binding QText}" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="Medium"/>
+                                    <Label Grid.Row="2"  Text="{Binding CorrectAnswer}" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="Medium"></Label>
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

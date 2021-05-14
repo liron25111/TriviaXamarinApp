@@ -179,8 +179,7 @@ namespace TriviaXamarinApp.ViewModels
             Random r = new Random();
             Answers = Answers.OrderBy(x => r.Next()).ToArray();
         }
-        public ICommand ChekCommand => new Command<string>(Answer);
-        public event Action<Page> Push;
+        public ICommand checkCommand => new Command<string>(Answer);
 
 
         public void Answer(string s)

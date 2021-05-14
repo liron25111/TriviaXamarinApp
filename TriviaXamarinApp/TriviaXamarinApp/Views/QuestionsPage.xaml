@@ -8,17 +8,37 @@
         <ToolbarItem Text="Login" Order="Secondary" Priority="0" Clicked="Login_Clicked"/>
         <ToolbarItem Text="register" Order="Secondary" Priority="0" Clicked="Register_Clicked"/>
         <ToolbarItem Text="User's page" Order="Secondary" Priority="1" Clicked="User_Clicked"/>
-        <ToolbarItem Text="My Questions" Order="Secondary" Priority="1" Clicked="Your_Questions"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BackgroundColor="LightBlue" HorizontalOptions="Center" VerticalOptions="Center">
-            <Label x:Name="qtext" Text="{Binding QText}" TextColor="Black" FontSize="Large"></Label>
-
-            <Label Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Count}" BackgroundColor="SkyBlue" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[3]}"  Command="{Binding ChekCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="The Question is : " />
+                        <Span Text="{Binding QText}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Submited By: " />
+                        <Span Text="{Binding NickName}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Correct Answers: " />
+                        <Span Text="{Binding Count}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[3]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
             <Label x:Name="msg" Text="{Binding Message}" HorizontalOptions="Center" TextColor="Red" FontSize="25"></Label>
         </StackLayout>
     </ContentPage.Content>
