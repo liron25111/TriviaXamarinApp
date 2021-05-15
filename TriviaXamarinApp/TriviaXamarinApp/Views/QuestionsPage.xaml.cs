@@ -54,5 +54,19 @@ namespace TriviaXamarinApp.Views
             Page p = new YourQ();
             App.Current.MainPage.Navigation.PushAsync(p);
         }
+
+        private void Log_OutClicked(object sender, EventArgs e)
+        {
+            App a = (App)App.Current;
+            a.CurrentUser = null;
+            Page p = new MainPage();
+            App.Current.MainPage.Navigation.PushAsync(p);
+        }
+
+
+
+
+
+
     }
 }

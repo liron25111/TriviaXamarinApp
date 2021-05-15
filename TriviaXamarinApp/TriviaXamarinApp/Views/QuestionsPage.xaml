@@ -7,9 +7,10 @@
         <ToolbarItem Text="Login" Order="Secondary" Priority="0" Clicked="Login_Clicked"/>
         <ToolbarItem Text="register" Order="Secondary" Priority="0" Clicked="Register_Clicked"/>
         <ToolbarItem Text="User's page" Order="Secondary" Priority="1" Clicked="User_Clicked"/>
+        <ToolbarItem Text="Log out" Order="Secondary" Priority="1" Clicked="Log_OutClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="LightBlue" HorizontalOptions="Center" VerticalOptions="Center">
+        <StackLayout BackgroundColor="LightBlue">
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
@@ -34,10 +35,10 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
-            <Button Margin="20,0,20,0" HeightRequest="55" WidthRequest="55" TextColor="White" Text="{Binding Answers[3]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="SkyBlue" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
+            <Button  TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
+            <Button   TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
+            <Button  TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
+            <Button  TextColor="White" Text="{Binding Answers[3]}"   Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
             <Label x:Name="msg" Text="{Binding Message}" HorizontalOptions="Center" TextColor="Red" FontSize="25"></Label>
         </StackLayout>
     </ContentPage.Content>
