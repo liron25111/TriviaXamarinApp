@@ -22,7 +22,7 @@ namespace TriviaXamarinApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-   
+
         private string nickName;
         public string NickName
         {
@@ -150,11 +150,21 @@ namespace TriviaXamarinApp.ViewModels
         //public ICommand EditCommand => new Command<AmericanQuestion>(EditQuestion);
 
         public Func<Page, Task> Push { get; set; }
+        //public ICommand GoToEditCommand { get; set; }
 
-        //public async void EditQuestion(AmericanQuestion americanQ)
+        //private void GoToEdit(AmericanQuestion question)
         //{
-        //    //TriviaWebAPIProxy proxy = TriviaWebAPIProxy.CreateProxy();
-        //    //await proxy.DeleteQuestion(americanQ);
+        //    EditPageViewModel editPageViewModel = new EditPageViewModel(question);
+
+        //    EditPage eP = new EditPage();
+        //    eP.BindingContext = editPageViewModel;
+        //    Task t = Push?.Invoke(eP);
+        //    t.Wait();
+        //    Questions.Clear();
+        //    foreach (AmericanQuestion q in ((App)App.Current).CurrentUser.Questions)
+        //    {
+        //        Questions.Add(q);
+        //    }
         //}
     }
 }
