@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             x:Class="TriviaXamarinApp.Views.QuestionsPage" NavigationPage.HasBackButton="False"
+             x:Class="TriviaXamarinApp.Views.QuestionsPage" NavigationPage.HasBackButton="False" 
              x:Name="TheMainPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Login" Order="Secondary" Priority="0" Clicked="Login_Clicked"/>
@@ -35,10 +35,10 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button  TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"    ></Button>
-            <Button   TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"    ></Button>
-            <Button  TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"  ></Button>
-            <Button  TextColor="White" Text="{Binding Answers[3]}"   Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"  ></Button>
+            <Button  TextColor="Black" Text="{Binding Answers[0]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="White" FontSize="Medium" FontAttributes="None"    ></Button>
+            <Button   TextColor="Black" Text="{Binding Answers[1]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="White" FontSize="Medium" FontAttributes="None"    ></Button>
+            <Button  TextColor="Black" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="White" FontSize="Medium" FontAttributes="None"  ></Button>
+            <Button  TextColor="Black" Text="{Binding Answers[3]}"   Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="White" FontSize="Medium" FontAttributes="None"  ></Button>
             <Label x:Name="msg" Text="{Binding Message}" HorizontalOptions="Center" TextColor="Red" FontSize="25"></Label>
         </StackLayout>
     </ContentPage.Content>

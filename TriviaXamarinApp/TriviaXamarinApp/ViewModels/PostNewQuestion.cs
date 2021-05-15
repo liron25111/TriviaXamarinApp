@@ -61,8 +61,11 @@ namespace TriviaXamarinApp.ViewModels
                  
                         bool b = await proxy.PostNewQuestion(newQ);
                         if (b)
-                            await App.Current.MainPage.Navigation.PushAsync(new TriviaXamarinApp.Views.YourQ());
-                        else
+                    {
+                        ((App)App.Current).CurrentUser.Questions.Add(newQ);
+                        await App.Current.MainPage.Navigation.PushAsync(new TriviaXamarinApp.Views.YourQ());
+                    }
+                    else
                             Error = "Something Went Wrong...";
 
 

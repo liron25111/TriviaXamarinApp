@@ -14,6 +14,8 @@ namespace TriviaXamarinApp.Views
     {
         public PostNewQxaml()
         {
+            this.Title = "Add New Question";
+
             InitializeComponent();
             BindingContext = new PostNewQuestion();
         }

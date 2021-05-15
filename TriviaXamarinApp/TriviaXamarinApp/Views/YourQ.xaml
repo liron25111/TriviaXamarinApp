@@ -39,8 +39,8 @@
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Delete"
+                                          BackgroundColor="Red"         
                                            IconImageSource="delete.png"      
-                                           BackgroundColor="Red"
                                            Invoked="Swipe"
                                            Command="{Binding Source={x:Reference TheMainPage}, Path= BindingContext.DeleteQuestionCommand}"
                                            CommandParameter="{Binding}"/>

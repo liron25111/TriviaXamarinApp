@@ -14,10 +14,12 @@ namespace TriviaXamarinApp.Views
     {
         public MainPage()
         {
+            this.Title = "Welcome To Trivia App";
             InitializeComponent();
             TriviaXamarinApp.ViewModels.MainPageViewModel mainPage = new ViewModels.MainPageViewModel();
             this.BindingContext = mainPage;
             mainPage.Push += (p) => Navigation.PushAsync(p);
+
         }
     }
 }
