@@ -108,7 +108,7 @@ namespace TriviaXamarinApp.ViewModels
                 if (t)
                 {
                     ((App)App.Current).CurrentUser = u;
-                    Push?.Invoke(new TriviaXamarinApp.Views.QuestionsPage());
+                    Push?.Invoke(new TriviaXamarinApp.Views.LoginPage());
                 }
             }
             catch (Exception)

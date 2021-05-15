@@ -5,9 +5,10 @@
              x:Name="TheMainPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Login" Order="Secondary" Priority="0" Clicked="Login_Clicked"/>
-        <ToolbarItem Text="register" Order="Secondary" Priority="0" Clicked="Register_Clicked"/>
+        <ToolbarItem Text="register" Order="Secondary" Priority="0"  Clicked="Register_Clicked"/>
         <ToolbarItem Text="User's page" Order="Secondary" Priority="1" Clicked="User_Clicked"/>
         <ToolbarItem Text="Log out" Order="Secondary" Priority="1" Clicked="Log_OutClicked"/>
+        <ToolbarItem Text="Your Questions" Order="Secondary" Priority="1" Clicked="Your_Questions"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BackgroundColor="LightBlue">
