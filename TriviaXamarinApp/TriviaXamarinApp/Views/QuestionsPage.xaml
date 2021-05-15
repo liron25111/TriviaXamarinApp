@@ -14,7 +14,7 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="The Question is : " />
+                        <Span Text="The Question is : "/>
                         <Span Text="{Binding QText}" />
                     </FormattedString>
                 </Label.FormattedText>
@@ -23,7 +23,7 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Submited By: " />
-                        <Span Text="{Binding NickName}" />
+                        <Span Text="{Binding NickName}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -35,10 +35,10 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button  TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
-            <Button   TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
-            <Button  TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
-            <Button  TextColor="White" Text="{Binding Answers[3]}"   Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="SkyBlue" HeightRequest="10" WidthRequest="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Button>
+            <Button  TextColor="White" Text="{Binding Answers[0]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[0]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"    ></Button>
+            <Button   TextColor="White" Text="{Binding Answers[1]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[1]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"    ></Button>
+            <Button  TextColor="White" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"  ></Button>
+            <Button  TextColor="White" Text="{Binding Answers[3]}"   Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="Black" FontSize="Medium" FontAttributes="None"  ></Button>
             <Label x:Name="msg" Text="{Binding Message}" HorizontalOptions="Center" TextColor="Red" FontSize="25"></Label>
         </StackLayout>
     </ContentPage.Content>

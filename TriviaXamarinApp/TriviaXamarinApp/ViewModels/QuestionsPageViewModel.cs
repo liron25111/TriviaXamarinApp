@@ -14,25 +14,25 @@ using System.Linq;
 
 namespace TriviaXamarinApp.ViewModels
 {
-    //public class AnswerViewModel :INotifyPropertyChanged
-    //{
-    //    public event PropertyChangedEventHandler PropertyChanged;
-    //    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    //    {
-    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    //    }
-    //    public string Answer { get; set; }
-    //    public Color color;
-    //    public Color Color
-    //    {
-    //        get { return this.color; }
-    //        set
-    //        {
-    //            if (this.color != value)
-    //                OnPropertyChanged(nameof(Color));
-    //        }
-    //    }
-    //}
+    public class AnswerViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public string Answer { get; set; }
+        public Color color;
+        public Color Color
+        {
+            get { return this.color; }
+            set
+            {
+                if (this.color != value)
+                    OnPropertyChanged(nameof(Color));
+            }
+        }
+    }
     class QuestionsPageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
