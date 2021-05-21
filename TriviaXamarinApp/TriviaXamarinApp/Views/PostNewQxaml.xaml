@@ -6,7 +6,7 @@
         <ScrollView>
        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="20" BackgroundColor="LightBlue">
                 <Label Text="Add Question:" TextColor="Black" FontAttributes="Bold" FontSize="35" HorizontalOptions="CenterAndExpand" Margin="25" HorizontalTextAlignment="Center"/>
-                <Entry  FontSize="Caption"  Placeholder="Enter Question Text" HorizontalOptions="CenterAndExpand" WidthRequest="250" PlaceholderColor="Black" Margin="25" TextColor="black" FontAttributes="Bold" Text="{Binding QuestionText}"/>
+                <Entry  FontSize="Caption"  Placeholder="Enter Question Text" HorizontalOptions="CenterAndExpand" WidthRequest="250" PlaceholderColor="Black" Margin="25" TextColor="black" FontAttributes="Bold" Text="{Binding c}"/>
                 <Entry Placeholder="Enter Correct Answer" BackgroundColor="Green" TextColor="Black"  FontSize="Caption" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="20" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding CorrectAnswer}"/>
                <Entry Placeholder="Enter Wrong Answer" BackgroundColor="Red" TextColor="Black"  FontSize="Caption" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="20" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding WrongAnswers[0]}"/>
                     <Entry Placeholder="Enter Wrong Answer" BackgroundColor="Red" TextColor="Black" FontSize="Caption" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="20" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding WrongAnswers[1]}"/>

@@ -3,34 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaXamarinApp.Views.EditPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="15">
+        <ScrollView>
 
-                <Label Text="Edit" TextColor="Black" FontAttributes="Bold" FontSize="35" HorizontalOptions="CenterAndExpand" Margin="25" HorizontalTextAlignment="Center"/>
+            <StackLayout>
+                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="15" BackgroundColor="LightBlue">
 
-                <Grid>
+                    <Label Text="Edit" TextColor="Black" FontAttributes="Bold" FontSize="35" HorizontalOptions="CenterAndExpand" Margin="25" HorizontalTextAlignment="Center"/>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Entry Grid.Row="0" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="LightBlue" Text="{Binding QTextAfter}"></Entry>
-                    <Entry Grid.Row="1" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Green" Text="{Binding CorrectAnswerAfter}"></Entry>
-                    <Entry Grid.Row="2" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="red" Text="{Binding OtherAnswersAfterChange[0]}"></Entry>
-                    <Entry Grid.Row="3" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="red" Text="{Binding OtherAnswersAfterChange[1]}"></Entry>
-                    <Entry Grid.Row="4" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="red" Text="{Binding OtherAnswersAfterChange[2]}"></Entry>
+                    <Grid>
 
-                </Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Entry Grid.Row="0" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="LightBlue" Text="{Binding QuestionText}"></Entry>
+                        <Entry Grid.Row="1" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Green" Text="{Binding CorrectAnswer}"></Entry>
+                        <Entry Grid.Row="2" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="red" Text="{Binding WrongAnswers[0]}"></Entry>
+                        <Entry Grid.Row="3" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="red" Text="{Binding WrongAnswers[1]}"></Entry>
+                        <Entry Grid.Row="4" FontSize="Caption" Placeholder="Enter Question Text :" HorizontalOptions="CenterAndExpand" WidthRequest="275" PlaceholderColor="Black" Margin="25" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="red" Text="{Binding WrongAnswers[2]}"></Entry>
 
-                <Label Text="{Binding Error} " FontAttributes="Bold" FontSize="Caption" HorizontalOptions="CenterAndExpand" />
+                    </Grid>
 
-                <Button BackgroundColor="Silver" Text="Submit" CornerRadius="20" WidthRequest="125" HorizontalOptions="Center" Margin="15" FontAttributes="Bold" FontSize="Caption" Padding="0" Command="{Binding SubmitQuestionCommand}" />
+                    <Label Text="{Binding Error} " FontAttributes="Bold" FontSize="Caption" HorizontalOptions="CenterAndExpand" />
+
+                    <Button BackgroundColor="Silver" Text="Submit" CornerRadius="20" WidthRequest="125" HorizontalOptions="Center" Margin="15" FontAttributes="Bold" FontSize="Caption" Padding="0" Command="{Binding SubmitQCommand}" />
 
 
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

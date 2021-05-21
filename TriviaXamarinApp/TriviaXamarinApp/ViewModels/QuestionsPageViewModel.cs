@@ -110,6 +110,7 @@ namespace TriviaXamarinApp.ViewModels
 
         public AmericanQuestion AQ { get; set; }
         public ObservableCollection<AnswerViewModel> AnswersList { get; set; }
+       
         public bool clicked;
         public bool Clicked
         {

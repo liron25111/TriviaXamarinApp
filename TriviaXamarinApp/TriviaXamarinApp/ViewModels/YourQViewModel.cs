@@ -147,24 +147,19 @@ namespace TriviaXamarinApp.ViewModels
                 Error = "Something Went Wrong...";
             }
         }
-        //public ICommand EditCommand => new Command<AmericanQuestion>(EditQuestion);
+        public ICommand EditCommand => new Command<AmericanQuestion>(GoToEdit);
 
-        public Func<Page, Task> Push { get; set; }
-        //public ICommand GoToEditCommand { get; set; }
+        public event Action<Page> Push;
 
-        //private void GoToEdit(AmericanQuestion question)
-        //{
-        //    EditPageViewModel editPageViewModel = new EditPageViewModel(question);
+        private void GoToEdit(AmericanQuestion question)
+        {
 
-        //    EditPage eP = new EditPage();
-        //    eP.BindingContext = editPageViewModel;
-        //    Task t = Push?.Invoke(eP);
-        //    t.Wait();
-        //    Questions.Clear();
-        //    foreach (AmericanQuestion q in ((App)App.Current).CurrentUser.Questions)
-        //    {
-        //        Questions.Add(q);
-        //    }
-        //}
+            Questions.Clear();
+            foreach (AmericanQuestion q in ((App)App.Current).CurrentUser.Questions)
+            {
+                Questions.Add(q);
+            }
+            Push?.Invoke(new TriviaXamarinApp.Views.EditPage(question));
+        }
     }
 }
