@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="TriviaXamarinApp.Views.LoginPage">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout BackgroundColor="LightBlue">
             <Label Text="Hello guys if you want to log in u are in the right place!" FontSize="25" TextColor="Red" HorizontalTextAlignment="Center"
                Margin="40" HorizontalOptions="CenterAndExpand" />
@@ -31,5 +32,6 @@
                 <Image Source="a.jpg" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="250" Grid.Row="9"/>
             </Grid>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -41,6 +41,9 @@
             <Button  TextColor="Black" Text="{Binding Answers[2]}"  Command="{Binding checkCommand}" CommandParameter="{Binding Answers[2]}" BackgroundColor="White" FontSize="Medium" FontAttributes="None"  ></Button>
             <Button  TextColor="Black" Text="{Binding Answers[3]}"   Command="{Binding checkCommand}" CommandParameter="{Binding Answers[3]}" BackgroundColor="White" FontSize="Medium" FontAttributes="None"  ></Button>
             <Label x:Name="msg" Text="{Binding Message}" HorizontalOptions="Center" TextColor="Red" FontSize="25"></Label>
+            <Label x:Name="Qtext" Text="Wrong Answer  " IsVisible="{Binding Wrong}" HorizontalOptions="Center" TextColor="Red" FontSize="26"></Label>
+            <Label x:Name="Qtext2" Text="Correct Answer " HorizontalOptions="Center"  IsVisible="{Binding Correct}" TextColor="Green" FontSize="26"></Label>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

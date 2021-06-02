@@ -93,6 +93,32 @@ namespace TriviaXamarinApp.ViewModels
                 }    
             }
         }
+        private bool correct;
+        public bool Correct
+        {
+            get { return this.correct; }
+            set
+            {
+                if (this.correct != value)
+                {
+                    this.correct = value;
+                    OnPropertyChanged(nameof(Correct));
+                }
+            }
+        }
+        private bool wrong;
+        public bool Wrong
+        {
+            get { return this.wrong; }
+            set
+            {
+                if (this.wrong != value)
+                {
+                    this.wrong = value;
+                    OnPropertyChanged(nameof(Wrong));
+                }
+            }
+        }
         private string message;
         public string Message
         {
@@ -188,10 +214,19 @@ namespace TriviaXamarinApp.ViewModels
            
                 if (s == CorrectAnswer)
                 {
-
-                    Count++;
+                Correct = true;
+                Wrong = false;
+                Count++;
+                
                 }
-               if( count!=0&&Count %3==0)
+                else
+            {
+               Wrong = true;
+                Correct = false;
+            }
+               
+            
+                 if( count!=0&&Count %3==0)
                 {
                 App a = (App)App.Current;
                 if(a.CurrentUser!= null)
@@ -200,10 +235,10 @@ namespace TriviaXamarinApp.ViewModels
                 }
 
                 }
-           
+         
             CreateQuestion();
+         
         }
-        
  }
 
 
